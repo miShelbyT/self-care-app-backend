@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :activities, only: :index
+      resources :user_activities, only: [:index, :create]
+      resources :users, only: [:show, :create, :index]
+      resources :journal_entries, only: [:create, :index, :show]
     end
   end
   
