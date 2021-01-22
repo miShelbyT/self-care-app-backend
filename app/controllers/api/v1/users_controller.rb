@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
 
   def index
-    users = User.all.includes(:user_activities)
+    users = User.all.includes(:user_activities, :journal_entries)
     render json: users
   end
 
@@ -13,6 +13,13 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.create(user_params)
     render json: user
+  end
+
+  def login
+    user=User.find_by(name: params[:name])
+    if(user && user.authenticate(params[:password]))
+      render json: user
+    end
   end
 
   private
