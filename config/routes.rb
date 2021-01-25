@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :activities, only: :index
       resources :user_activities, only: [:index, :create, :show, :update, :destroy]
-      resources :users, only: [:show, :create, :index]
+      resources :users, only: [:show, :create, :index, :update, :destroy]
       resources :journal_entries, only: [:create, :index, :show, :update, :destroy]
       post '/users/login', to: 'users#login'
     end
